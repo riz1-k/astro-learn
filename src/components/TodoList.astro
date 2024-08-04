@@ -1,0 +1,20 @@
+---
+import { useQuery } from "@tanstack/react-query";
+import type { TTodo } from "../pages/api/test";
+import Todo from "./Todo.astro";
+
+const { data } = useQuery({
+  queryKey: ["todos"],
+  queryFn: async () => {
+    const response = await fetch("/api/test");
+    const data = await response.json();
+    return data.todos as TTodo[];
+  },
+});
+---
+
+<ul>
+  {data?.map((todo) => (
+    <Todo todo={todo} />
+  ))}
+</ul>

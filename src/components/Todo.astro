@@ -1,0 +1,12 @@
+---
+import type { TTodo } from "../pages/api/test"
+
+const { todo } = Astro.props as {
+  todo: TTodo
+}
+---
+
+<li>
+  <input type="checkbox" checked={todo.completed} />
+  <span>{todo.title}</span>
+</li>
